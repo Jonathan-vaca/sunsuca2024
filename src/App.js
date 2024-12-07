@@ -1,21 +1,22 @@
-// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { AuthProvider } from './contexts/AuthContext';
-import { EventProvider } from './contexts/EventContext'; // Importamos el proveedor
+import { EventProvider } from './contexts/EventContext';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import CatalogoPage from './pages/CatalogoPage';
 import GaleriaPage from './pages/GaleriaPage';
 import DashboardPage from './pages/DashboardPage';
-import EventosPage from './pages/EventosPage'; // Nueva ruta
+import EventosPage from './pages/EventosPage';
+import UserDashboard from './components/UserDashboard';
+import AdminDashboard from './pages/AdminDashboard'; // Importa AdminDashboard
 
 const App = () => {
   return (
     <AuthProvider>
-      <EventProvider>  {/* Envuelvo la aplicación con el proveedor de eventos */}
+      <EventProvider>
         <Router>
           <Header />
           <Routes>
@@ -24,7 +25,9 @@ const App = () => {
             <Route path="/catalogo" element={<CatalogoPage />} />
             <Route path="/galeria" element={<GaleriaPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/eventos" element={<EventosPage />} /> {/* Nueva ruta */}
+            <Route path="/user-dashboard" element={<UserDashboard />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} /> {/* Ruta Admin */}
+            <Route path="/eventos" element={<EventosPage />} />
           </Routes>
           <Footer />
         </Router>
